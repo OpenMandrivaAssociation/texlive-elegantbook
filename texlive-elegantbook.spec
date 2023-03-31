@@ -1,6 +1,6 @@
 Name:		texlive-elegantbook
 Version:	64122
-Release:	1
+Release:	2
 Summary:	An Elegant LaTeX Template for Books
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/elegantbook
