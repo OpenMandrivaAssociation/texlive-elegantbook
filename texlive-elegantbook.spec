@@ -1,38 +1,24 @@
-Name:		texlive-elegantbook
-Version:	64122
-Release:	2
+%global tl_name elegantbook
+%global tl_revision 78872
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	4.7
+Release:	%{tl_revision}.1
 Summary:	An Elegant LaTeX Template for Books
 Group:		Publishing
 URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/elegantbook
 License:	lppl1.3c
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/elegantbook.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/elegantbook.doc.r%{version}.tar.xz
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/elegantbook.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/elegantbook.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
+BuildSystem:	texlive
 BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+%texlive_base_requires
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-ElegantBook is designed for writing Books. This template is
-based on the standard LaTeX book class. The goal of this
-template is to make the writing process more elegant. Just
-enjoy it!
+ElegantBook is designed for writing Books. This template is based on the
+standard LaTeX book class. The goal of this template is to make the
+writing process more elegant.
 
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-rm -rf tlpkg
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -a * %{buildroot}%{_texmfdistdir}
-
-%files
-%{_texmfdistdir}/tex/latex/elegantbook
-%doc %{_texmfdistdir}/doc/latex/elegantbook
-
-%post -p %{_sbindir}/texlive.post
-
-%postun
-[ "$1" -eq 0 ] && %{_sbindir}/texlive.post
